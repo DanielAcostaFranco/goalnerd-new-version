@@ -797,3 +797,123 @@ footer {
     animation-duration: 1.7s;
     animation-delay: 0.3s; 
 }
+
+/* -------------------------------- */
+/* THEME TOGGLE SWITCH              */
+/* -------------------------------- */
+
+.theme-toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-left: 4rem;
+}
+
+.theme-label {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--dark-gray);
+}
+
+/* Larger switch container */
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;     /* bigger track */
+  height: 36px;    /* taller track */
+}
+
+/* Hide checkbox */
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider track */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #cfcfcf;
+  border-radius: 40px;
+  transition: 0.3s ease;
+}
+
+
+.slider::before {
+  position: absolute;
+  content: "⚽";
+  font-size: 22px;          
+  height: 30px;             
+  width: 30px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;  /* background circle */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s ease;
+}
+
+/* Move ball to the right when ON */
+input:checked + .slider::before {
+  transform: translateX(34px); /* updated for bigger width */
+}
+
+/* Track ON state */
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+/* -------------------------------- */
+/* DARK MODE OVERRIDES              */
+/* -------------------------------- */
+
+body.dark-mode {
+  --light-bg: #0f0f0f;
+  --mid-gray: #e5e5e5;
+  --dark-gray: #ffffff;
+  --primary-color: #32cd32;
+
+  background-color: var(--light-bg);
+  color: var(--mid-gray);
+}
+
+body.dark-mode header {
+  background: #111;
+  border-bottom: 1px solid #333;
+}
+
+body.dark-mode .hero::after {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .search-box input {
+  background: #222;
+  color: #eee;
+  border-color: #444;
+}
+
+body.dark-mode .search-box button {
+  background: #28a428;
+}
+
+body.dark-mode .card,
+body.dark-mode .team-card,
+body.dark-mode .spotlight-card {
+  background-color: #1a1a1a;
+  color: white;
+  border-color: #333;
+}
+
+body.dark-mode .game-card {
+  background-color: #1a1a1a;
+  border-color: #333;
+}
+
+body.dark-mode .vs-badge {
+  background-color: #333;
+  color: white;
+}
