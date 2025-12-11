@@ -1,5 +1,5 @@
 /**
- * =============================================================================
+ * =QUENCY====================================================================
  * MAIN.JS - "No Limits" Version (All Games)
  * =============================================================================
  */
@@ -15,6 +15,41 @@ const LEAGUES = [
     { id: '4331', name: '🇩🇪 Bundesliga' },
     { id: '4344', name: '🇵🇹 Primeira Liga' }
 ];
+
+// --- FALLING BALLS LOGIC (Runs only on first visit) ---
+function initFallingBalls() {
+    // 1. Define the key we will use in Local Storage
+    const VISIT_KEY = 'goalnerd_first_visit';
+
+    // 2. Get a reference to the falling balls container
+    const fallingBallsContainer = document.querySelector('.falling-balls-container');
+
+    // 3. Check if the user has visited before
+    const hasVisited = localStorage.getItem(VISIT_KEY);
+
+    if (fallingBallsContainer) {
+        if (hasVisited) {
+            // A. RETURNING VISITOR: Hide the container immediately.
+            fallingBallsContainer.style.display = 'none';
+
+        } else {
+            // B. FIRST-TIME VISITOR: Allow the animation to run, 
+            //    and then set the flag for future visits.
+
+            // The animation runs for 2.0 seconds total (based on your CSS).
+            const totalAnimationTimeMs = 2000; // 2.0 seconds
+
+            setTimeout(() => {
+                // Set the flag in Local Storage so the animation won't run again
+                localStorage.setItem(VISIT_KEY, 'true');
+
+                // Hide the container entirely after the animation is finished (safety measure)
+                fallingBallsContainer.style.display = 'none'; 
+            }, totalAnimationTimeMs);
+        }
+    }
+}
+
 
 // --- Search Form Logic ---
 function initSearchForm() {
@@ -193,6 +228,10 @@ async function fetchSpotlightPlayer() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    // *** NEW: Run the falling balls logic first ***
+    initFallingBalls();
+    
+    // *** Existing initializations ***
     initHamburgerMenu();
     initNavigationAnimation();
     initSkipLink();
