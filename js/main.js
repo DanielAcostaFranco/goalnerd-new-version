@@ -241,3 +241,29 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchSpotlightPlayer();
     fetchUpcomingGames();
 });
+
+
+// -------------------------------------
+// DARK MODE TOGGLE 
+// -------------------------------------
+const themeToggle = document.getElementById("theme-toggle");
+
+function applyTheme(theme) {
+  if (theme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.checked = true;
+  } else {
+    document.body.classList.remove("dark-mode");
+    themeToggle.checked = false;
+  }
+}
+
+// Load saved preference
+applyTheme(localStorage.getItem("theme") || "light");
+
+// Toggle listener
+themeToggle.addEventListener("change", () => {
+  const theme = themeToggle.checked ? "dark" : "light";
+  localStorage.setItem("theme", theme);
+  applyTheme(theme);
+});
