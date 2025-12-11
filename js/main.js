@@ -1,8 +1,4 @@
-/**
- * =QUENCY====================================================================
- * MAIN.JS - "No Limits" Version (All Games)
- * =============================================================================
- */
+
 
 import { API_BASE_URL } from './modules/api.js';
 import { initHamburgerMenu, initNavigationAnimation, initSkipLink } from './modules/navigation.js';
@@ -16,7 +12,7 @@ const LEAGUES = [
     { id: '4344', name: '🇵🇹 Primeira Liga' }
 ];
 
-// --- FALLING BALLS LOGIC (Runs only on first visit) ---
+// FALLING BALLS
 function initFallingBalls() {
     // 1. Define the key we will use in Local Storage
     const VISIT_KEY = 'goalnerd_first_visit';
